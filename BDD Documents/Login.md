@@ -2,9 +2,9 @@
 
 #### Background:
 
-Given I am at the login page  
-And the field "Username" is empty
-And the field "Password" is empty
+- Given I am at the login page
+- And the field "Username" is empty
+- And the field "Password" is empty
 
 #### Senario: Valid Username and Valid password was inputted
 
