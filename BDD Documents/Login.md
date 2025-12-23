@@ -1,11 +1,12 @@
-Feature: Logging in
+## Feature: Logging in
 
-Background:
+#### Background:
+
 Given I am at the login page  
- And the field "Username" is empty
+And the field "Username" is empty
 And the field "Password" is empty
 
-Senario: Valid Username and Valid password was inputted
+#### Senario: Valid Username and Valid password was inputted
 
 - When I type "standard_user" in "Username"
 - And I type "secret_sauce" in "Password"
