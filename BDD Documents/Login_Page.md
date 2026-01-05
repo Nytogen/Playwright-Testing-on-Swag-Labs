@@ -49,11 +49,4 @@
 - WHEN I type "standard_user" in "Username"
 - And I click "Login"
 - THEN I should see "Login"
-- And I should see "Epic sadface: Password is required"
-
-#### Senario 7: Unsucessful due to no username but a password was inputted
-
-- WHEN I type "secret_sauce" in "Password"
-- And I click "Login"
-- THEN I should see "Login"
-- And I should see "Epic sadface: Username is required"
+- And I should see "Epic sadface: Password is required
