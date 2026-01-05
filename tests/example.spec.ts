@@ -1,18 +1,20 @@
-import { test, expect } from '@playwright/test';
+import { test, expect } from "@playwright/test";
+import LoginPage from "../pages/loginPage";
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test("Senario 1: Sucessful login with a valid user", async ({ page }) => {
+  await page.goto("https://www.saucedemo.com/");
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  const loginPage = new LoginPage(page);
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  /* WHEN I type "standard_user" in "Username" */
+  await loginPage.inputUsername("standard_user");
+  /* And I type "secret_sauce" in "Password" */
+  await loginPage.inputPassword("secret_sauce");
+  /* And I click "Login" */
+  await loginPage.clickLogin();
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  /* THEN I shouldn't see "Login" */
+  await expect(page.getByText("Login")).toHaveCount(0);
+  /* And I should see "Products" */
+  await expect(page.getByText("Products")).not.toHaveCount(0);
 });
