@@ -19,6 +19,12 @@ class LoginPage {
   async clickLogin() {
     await this.login.click();
   }
+
+  async login(username, password) {
+    inputUsername(username);
+    inputPassword(password);
+    clickLogin();
+  }
 }
 
 module.exports = LoginPage;
