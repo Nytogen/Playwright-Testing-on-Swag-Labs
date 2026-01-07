@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import LoginPage from "../pages/LoginPage";
-import InventoryPage from "../pages/InventoryPage";
+import LoginPage from "../pages/loginPage";
+import InventoryPage from "../pages/inventoryPage";
 
 test.beforeEach(async ({ page }) => {
   await page.goto("https://www.saucedemo.com/");
