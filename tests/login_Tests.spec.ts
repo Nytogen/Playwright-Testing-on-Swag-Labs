@@ -18,9 +18,9 @@ test("Login Senario 1: Sucessful login with a valid user", async ({ page }) => {
   await loginPage.clickLogin();
 
   /* THEN I shouldn't see "Login" */
-  await expect(page.getByText("Login")).toHaveCount(0);
+  await expect(page.locator("[data-test='login-button']")).not.toBeVisible();
   /* And I should see "Products" */
-  await expect(page.getByText("Products")).not.toHaveCount(0);
+  await expect(page.locator("[data-test='title']")).toHaveText("Products");
 });
 
 test("Login Senario 2: Sucessful login with a valid user", async ({ page }) => {
@@ -34,7 +34,7 @@ test("Login Senario 2: Sucessful login with a valid user", async ({ page }) => {
   await loginPage.clickLogin();
 
   /* THEN I should see "Login" */
-  await expect(page.getByText("Login")).not.toHaveCount(0);
+  await expect(page.locator("[data-test='login-button']")).toHaveText("Login");
   /* And I should see "Epic sadface: Username and password do not match any user in this service" */
   await expect(page.locator("h3[data-test='error']")).toHaveText(
     "Epic sadface: Username and password do not match any user in this service"
@@ -54,7 +54,7 @@ test("Login Senario 3: Unsucessful login due to invalid username", async ({
   await loginPage.clickLogin();
 
   /* THEN I should see "Login" */
-  await expect(page.getByText("Login")).not.toHaveCount(0);
+  await expect(page.locator("[data-test='login-button']")).toHaveText("Login");
   /* And I should see "Epic sadface: Username and password do not match any user in this service" */
   await expect(page.locator("h3[data-test='error']")).toHaveText(
     "Epic sadface: Username and password do not match any user in this service"
@@ -74,7 +74,7 @@ test("Login Senario 4: Unsucessful login due to user being lockedout", async ({
   await loginPage.clickLogin();
 
   /* THEN I should see "Login" */
-  await expect(page.getByText("Login")).not.toHaveCount(0);
+  await expect(page.locator("[data-test='login-button']")).toHaveText("Login");
   /* And I should see "Epic sadface: Username and password do not match any user in this service" */
   await expect(page.locator("h3[data-test='error']")).toHaveText(
     "Epic sadface: Sorry, this user has been locked out."
@@ -90,7 +90,7 @@ test("Login Senario 5: Unsucessful login due to empty username and password", as
   await loginPage.clickLogin();
 
   /* THEN I should see "Login" */
-  await expect(page.getByText("Login")).not.toHaveCount(0);
+  await expect(page.locator("[data-test='login-button']")).toHaveText("Login");
   /* And I should see "Epic sadface: Username is required */
   await expect(page.locator("h3[data-test='error']")).toHaveText(
     "Epic sadface: Username is required"
@@ -108,7 +108,7 @@ test("Login Senario 6: Unsucessful login due to no password was inputted", async
   await loginPage.clickLogin();
 
   /* THEN I should see "Login" */
-  await expect(page.getByText("Login")).not.toHaveCount(0);
+  await expect(page.locator("[data-test='login-button']")).toHaveText("Login");
   /* And I should see "Epic sadface: Username is required */
   await expect(page.locator("h3[data-test='error']")).toHaveText(
     "Epic sadface: Password is required"

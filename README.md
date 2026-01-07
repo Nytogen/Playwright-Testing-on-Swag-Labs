@@ -6,4 +6,8 @@
 
 TODO
 
-- Update expects in login to use toHaveText and toBeVisible
+- Product Page Tests
+- Shopping Cart Doc
+- Shopping Cart Tests
+- Checkout Doc
+- Checkout Tests
