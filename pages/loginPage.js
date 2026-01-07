@@ -8,6 +8,7 @@ class LoginPage {
     this.login = this.page.locator("#login-button");
   }
 
+  /* Seperate functions were created so that it is easier to add BDD comments into the tests. */
   async inputUsername(username) {
     await this.username.fill(username);
   }
@@ -20,10 +21,11 @@ class LoginPage {
     await this.login.click();
   }
 
-  async login(username, password) {
-    inputUsername(username);
-    inputPassword(password);
-    clickLogin();
+  /* For cases where the login page is not tested a combined function is created */
+  async loginFull(username, password) {
+    await this.inputUsername(username);
+    await this.inputPassword(password);
+    await this.clickLogin();
   }
 }
 

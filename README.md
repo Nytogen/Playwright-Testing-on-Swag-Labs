@@ -3,3 +3,7 @@
 - Plans out tests using a BDD Framework
 - Uses Playwright in JS to execute Tests
 - Oragnizes Playwright tests in a POM Model for resuablility and to somewhat mimic BDD tests
+
+TODO
+
+- Update expects in login to use toHaveText and toBeVisible

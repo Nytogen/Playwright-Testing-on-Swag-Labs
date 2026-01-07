@@ -81,7 +81,7 @@
 - GIVEN I am logged in as standard_user
 - and I am on the Inventory Page
 
-#### Senario 1: user decides to logout
+#### Logout Senario 1: user decides to logout
 
 - WHEN I click the burger menu on the top left
 - and I click on "Logout"
@@ -95,20 +95,20 @@
 - GIVEN I am logged in as standard_user
 - and I am on the Inventory Page
 
-#### Senario 1: User navigates to the About Page
+#### Nav Senario 1: User navigates to the About Page
 
 - WHEN I click the burger menu on the top left
 - and I click on "About"
-- THEN I should be direct to the site "saucelabs.com"
+- THEN I should be direct to the site "https://saucelabs.com"
 
-#### Senario 2: User navigates to the Cart Page
+#### Nav Senario 2: User navigates to the Cart Page
 
 - WHEN I click the shopping cart icon on the top right
 - and I click on "About"
 - THEN I should see "Your Cart"
 - and I should not see "Products"
 
-#### Senario 3: User naviagtes to the All Items Page
+#### Nav Senario 3: User naviagtes to the All Items Page
 
 - WHEN I click the shopping cart icon on the top right
 - and I click on the burger menu on the top left
@@ -116,13 +116,13 @@
 - THEN I should see "Products"
 - and I should not see "Your Cart"
 
-#### Senario 4: User Clicks on an item
+#### Nav Senario 4: User Clicks on an item
 
 - WHEN I click on "Sauce Labs Backpack"
 - THEN I should see "Back to products"
 - and I should not see "Sauce Labs Bike Light"
 
-#### Senario 5: User resets app state
+#### Nav Senario 5: User resets app state
 
 - WHEN I click "Add to cart" on "Sauce Labs Backpack"
 - and I click on the burger menu on the top left

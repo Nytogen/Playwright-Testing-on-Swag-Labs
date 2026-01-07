@@ -1,10 +1,13 @@
 import { test, expect } from "@playwright/test";
-import LoginPage from "../pages/loginPage";
+import LoginPage from "../pages/LoginPage";
+
+test.beforeEach(async ({ page }) => {
+  /* GIVEN I am a user at the login page */
+  await page.goto("https://www.saucedemo.com/");
+});
 
 //Feature: Logging In
-test("Senario 1: Sucessful login with a valid user", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com/");
-
+test("Login Senario 1: Sucessful login with a valid user", async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   /* WHEN I type "standard_user" in "Username" */
@@ -20,9 +23,7 @@ test("Senario 1: Sucessful login with a valid user", async ({ page }) => {
   await expect(page.getByText("Products")).not.toHaveCount(0);
 });
 
-test("Senario 2: Sucessful login with a valid user", async ({ page }) => {
-  await page.goto("https://www.saucedemo.com/");
-
+test("Login Senario 2: Sucessful login with a valid user", async ({ page }) => {
   const loginPage = new LoginPage(page);
 
   /* WHEN I type "standard_user" in "Username" */
@@ -40,11 +41,9 @@ test("Senario 2: Sucessful login with a valid user", async ({ page }) => {
   );
 });
 
-test("Senario 3: Unsucessful login due to invalid username", async ({
+test("Login Senario 3: Unsucessful login due to invalid username", async ({
   page,
 }) => {
-  await page.goto("https://www.saucedemo.com/");
-
   const loginPage = new LoginPage(page);
 
   /* WHEN I type "wrong_user" in "Username" */
@@ -62,11 +61,9 @@ test("Senario 3: Unsucessful login due to invalid username", async ({
   );
 });
 
-test("Senario 4: Unsucessful login due to user being lockedout", async ({
+test("Login Senario 4: Unsucessful login due to user being lockedout", async ({
   page,
 }) => {
-  await page.goto("https://www.saucedemo.com/");
-
   const loginPage = new LoginPage(page);
 
   /* WHEN I type "locked_out_user" in "Username" */
@@ -84,11 +81,9 @@ test("Senario 4: Unsucessful login due to user being lockedout", async ({
   );
 });
 
-test("Senario 5: Unsucessful login due to empty username and password", async ({
+test("Login Senario 5: Unsucessful login due to empty username and password", async ({
   page,
 }) => {
-  await page.goto("https://www.saucedemo.com/");
-
   const loginPage = new LoginPage(page);
 
   /* WHEN I click "Login" */
@@ -102,11 +97,9 @@ test("Senario 5: Unsucessful login due to empty username and password", async ({
   );
 });
 
-test("Senario 6: Unsucessful login due to no password was inputted", async ({
+test("Login Senario 6: Unsucessful login due to no password was inputted", async ({
   page,
 }) => {
-  await page.goto("https://www.saucedemo.com/");
-
   const loginPage = new LoginPage(page);
 
   /* WHEN I type "standard_user" in "Username" */
