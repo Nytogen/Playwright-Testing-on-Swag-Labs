@@ -104,7 +104,6 @@
 #### Nav Senario 2: User navigates to the Cart Page
 
 - WHEN I click the shopping cart icon on the top right
-- and I click on "About"
 - THEN I should see "Your Cart"
 - and I should not see "Products"
 

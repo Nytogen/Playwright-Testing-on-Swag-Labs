@@ -6,8 +6,11 @@ class InventoryPage {
 
     //Nav
     this.burgerIcon = this.page.locator("button#react-burger-menu-btn");
-    this.logout = this.page.locator("a#logout_sidebar_link");
+    this.allItems = this.page.locator("a#inventory_sidebar_link");
     this.about = this.page.locator("a#about_sidebar_link");
+    this.logout = this.page.locator("a#logout_sidebar_link");
+    this.reset = this.page.locator("a#reset_sidebar_link");
+
     this.cart = this.page.locator("a[data-test='shopping-cart-link']");
   }
 
@@ -25,6 +28,26 @@ class InventoryPage {
 
   async clickCart() {
     await this.cart.click();
+  }
+
+  async clickAllItems() {
+    await this.allItems.click();
+  }
+
+  async clickResetAppState() {
+    await this.reset.click();
+  }
+
+  async clickOnItem(productName) {
+    await this.page.getByText(productName).click();
+  }
+
+  async addItemToCart(productName) {
+    const child = this.page.getByText(productName);
+    const parent = this.page
+      .locator("[data-test='inventory-item-description']")
+      .filter({ has: child });
+    await parent.locator("button").click();
   }
 }
 
