@@ -12,6 +12,57 @@ test.beforeEach(async ({ page }) => {
   /* and I am on the Inventory Page */
 });
 
+//Feature: Adding and Removing Items
+test("Items Senario 1: User adds one item", async ({ page }) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I click "Add to cart" on "Sauce Labs Backpack" */
+  await inventoryPage.addItemToCart("Sauce Labs Backpack");
+
+  /* THEN I should not see the cart have a red circle badge with the number 1 */
+  await expect(page.locator("[data-test='shopping-cart-badge']")).toHaveText(
+    "1"
+  );
+  /* and I should  see "remove" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='remove-sauce-labs-backpack']")
+  ).toBeVisible();
+  /* and I should not see "Add to cart" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+  ).not.toBeVisible();
+});
+
+test("Items Senario 2: User adds multiple items", async ({ page }) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I click "Add to cart" on "Sauce Labs Backpack" */
+  await inventoryPage.addItemToCart("Sauce Labs Backpack");
+  /* and I click "Add to cart" on "Sauce Labs Bike Light" */
+  await inventoryPage.addItemToCart("Sauce Labs Bike Light");
+
+  /* THEN I should not see the cart have a red circle badge with the number 1 */
+  await expect(page.locator("[data-test='shopping-cart-badge']")).toHaveText(
+    "2"
+  );
+  /* and I should  see "remove" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='remove-sauce-labs-backpack']")
+  ).toBeVisible();
+  /* and I should not see "Add to cart" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+  ).not.toBeVisible();
+  /* and I should not see "Add to cart" on "Sauce Labs Bike Light" */
+  await expect(
+    page.locator("[data-test='remove-sauce-labs-bike-light']")
+  ).toBeVisible();
+  /* and I should see "remove" on "Sauce Labs Bike Light" */
+  await expect(
+    page.locator("[data-test='add-to-cart-sauce-labs-bike-light']")
+  ).not.toBeVisible();
+});
+
 //Feature: Logout
 test("Logout Senario 1: user decides to logout", async ({ page }) => {
   const inventoryPage = new InventoryPage(page);

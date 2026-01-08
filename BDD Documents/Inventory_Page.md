@@ -5,14 +5,14 @@
 - GIVEN I am logged in as standard_user
 - and I am on the Inventory Page
 
-#### Senario 1: User adds one item
+#### Items Senario 1: User adds one item
 
 - WHEN I click "Add to cart" on "Sauce Labs Backpack"
-- THEN I should see the cart have a red circle badgewith the number 1
+- THEN I should see the cart have a red circle badge with the number 1
 - and I should not see "Add to cart" on "Sauce Labs Backpack"
 - and I should see "remove" on "Sauce Labs Backpack"
 
-#### Senario 2: User adds multiple items
+#### Items Senario 2: User adds multiple items
 
 - WHEN I click "Add to cart" on "Sauce Labs Backpack"
 - and I click "Add to cart" on "Sauce Labs Bike Light"
@@ -22,7 +22,7 @@
 - and I should not see "Add to cart" on "Sauce Labs Bike Light"
 - and I should see "remove" on "Sauce Labs Bike Light"
 
-#### Senario 3: User removes an item
+#### Items Senario 3: User removes an item
 
 - WHEN I click "Add to cart" on "Sauce Labs Backpack"
 - and I click "remove" on "Sauce Labs Backpack"
@@ -30,7 +30,7 @@
 - and I should "Add to cart" on "Sauce Labs Backpack"
 - and I should not see "remove" on "Sauce Labs Backpack"
 
-#### Senario 4: User logs out and logs back in with a saved cart
+#### Items Senario 4: User logs out and logs back in with a saved cart
 
 - WHEN I click "Add to cart" on "Sauce Labs Backpack"
 - and I logout
