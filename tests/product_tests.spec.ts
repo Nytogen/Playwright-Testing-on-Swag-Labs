@@ -63,6 +63,71 @@ test("Items Senario 2: User adds multiple items", async ({ page }) => {
   ).not.toBeVisible();
 });
 
+test("Items Senario 3: User removes an item", async ({ page }) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I click "Add to cart" on "Sauce Labs Backpack" */
+  await inventoryPage.addItemToCart("Sauce Labs Backpack");
+  /* and I click "Add to cart" on "Sauce Labs Bike Light" */
+  await inventoryPage.removeItemToCart("Sauce Labs Backpack");
+
+  /* THEN I should not see the cart have a red circle badge */
+  await expect(
+    page.locator("[data-test='shopping-cart-badge']")
+  ).not.toBeVisible();
+  /* and I should "Add to cart" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+  ).toBeVisible();
+  /* and I should not see "remove" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='remove-sauce-labs-backpack']")
+  ).not.toBeVisible();
+});
+
+test("Items Senario 4: User logs out and logs back in with a saved cart", async ({
+  page,
+}) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I click "Add to cart" on "Sauce Labs Backpack" */
+  await inventoryPage.addItemToCart("Sauce Labs Backpack");
+  /* and I logout */
+  await inventoryPage.openBurgerIcon();
+  await inventoryPage.clickLogout();
+  /* and I log back in as "standard_user" */
+  const loginPage = new LoginPage(page);
+  await loginPage.loginFull("standard_user", "secret_sauce");
+
+  /* THEN I should see the cart have a red circle badge with the number 1 */
+  await expect(page.locator("[data-test='shopping-cart-badge']")).toHaveText(
+    "1"
+  );
+  /* and I should not "Add to cart" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='add-to-cart-sauce-labs-backpack']")
+  ).not.toBeVisible();
+  /* and I should see "remove" on "Sauce Labs Backpack" */
+  await expect(
+    page.locator("[data-test='remove-sauce-labs-backpack']")
+  ).toBeVisible();
+});
+
+//Feature: Sorting/filter Items
+test("Senario 1: User sorts items is ascending alphabetical order", async ({
+  page,
+}) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I filter by "Name (A to Z)" */
+  await inventoryPage.selectFilter("az");
+
+  /* THEN I should see item "Sauce Labs Backpack" as the first item */
+  await inventoryPage.checkFirstItem("Sauce Labs Backpack");
+  /* and I should see item "Test.allTheThings() T-Shirt (Red)" as the last item */
+  await inventoryPage.checkLastItem("Test.allTheThings() T-Shirt (Red)");
+});
+
 //Feature: Logout
 test("Logout Senario 1: user decides to logout", async ({ page }) => {
   const inventoryPage = new InventoryPage(page);

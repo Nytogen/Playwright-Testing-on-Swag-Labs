@@ -7,6 +7,7 @@
 TODO
 
 - Product Page Tests
+- Update Product page tests to have assertioins in the page file instead of withiin tests
 - Shopping Cart Doc
 - Shopping Cart Tests
 - Checkout Doc

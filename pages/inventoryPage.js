@@ -14,6 +14,8 @@ class InventoryPage {
     this.cart = this.page.locator("a[data-test='shopping-cart-link']");
   }
 
+  /* Nav */
+
   async openBurgerIcon() {
     await this.burgerIcon.click();
   }
@@ -42,12 +44,49 @@ class InventoryPage {
     await this.page.getByText(productName).click();
   }
 
+  /* Items */
   async addItemToCart(productName) {
     const child = this.page.getByText(productName);
     const parent = this.page
       .locator("[data-test='inventory-item-description']")
       .filter({ has: child });
     await parent.locator("button").click();
+  }
+
+  async removeItemToCart(productName) {
+    const child = this.page.getByText(productName);
+    const parent = this.page
+      .locator("[data-test='inventory-item-description']")
+      .filter({ has: child });
+    await parent.locator("button").click();
+  }
+
+  async selectFilter(filterValue) {
+    await this.page
+      .locator("select[data-test='product-sort-container']")
+      .selectOption({ value: filterValue });
+  }
+
+  /* Assertions */
+
+  async checkFirstItem(itemName) {
+    await expect(
+      this.page
+        .locator("[data-test='inventory-list'] > :first-child")
+        .locator("[data-test='inventory-item-name']")
+    ).toHaveText(itemName);
+  }
+
+  async checkLastItem(itemName) {
+    await expect(
+      this.page
+        .locator("[data-test='inventory-list'] > :last-child")
+        .locator("[data-test='inventory-item-name']")
+    ).toHaveText(itemName);
+  }
+
+  async checkTitle(title) {
+    await expect(this.page.locator("[data-test='title']")).toHaveText(title);
   }
 }
 

@@ -21,6 +21,23 @@ class LoginPage {
     await this.login.click();
   }
 
+  /* Assertions */
+  async checkLoginButtonExists() {
+    await expect(this.page.locator("[data-test='login-button']")).toBeVisible();
+  }
+
+  async checkLoginButtonDoesNotExist() {
+    await expect(
+      this.page.locator("[data-test='login-button']")
+    ).not.toBeVisible();
+  }
+
+  async CheckErrorMessage(erorMessage) {
+    await expect(this.page.locator("h3[data-test='error']")).toHaveText(
+      erorMessage
+    );
+  }
+
   /* For cases where the login page is not tested a combined function is created */
   async loginFull(username, password) {
     await this.inputUsername(username);
