@@ -88,6 +88,47 @@ class InventoryPage {
   async checkTitle(title) {
     await expect(this.page.locator("[data-test='title']")).toHaveText(title);
   }
+
+  async checkNotTitle(title) {
+    await expect(this.page.locator("[data-test='title']")).not.toHaveText(
+      title
+    );
+  }
+
+  async checkNoTitle() {
+    await expect(this.page.getByText("Products")).not.toBeVisible();
+  }
+
+  async checkItemButtonisVisible(itemName) {
+    await expect(this.page.locator(`[data-test='${itemName}']`)).toBeVisible();
+  }
+
+  async checkItemButtonisNotVisible(itemName) {
+    await expect(
+      this.page.locator(`[data-test='${itemName}']`)
+    ).not.toBeVisible();
+  }
+
+  async checkCartNumber(number) {
+    await expect(
+      this.page.locator("[data-test='shopping-cart-badge']")
+    ).toHaveText(`${number}`);
+  }
+
+  async checkNoCartItems() {
+    await expect(
+      this.page.locator("[data-test='shopping-cart-badge']")
+    ).not.toBeVisible();
+  }
+
+  async checkBackToProductButtonExists() {
+    await expect(
+      this.page.locator("button[name='back-to-products']")
+    ).toBeVisible();
+  }
+  async checkProductNotVisible(productName) {
+    await expect(this.page.getByText(productName)).not.toBeVisible();
+  }
 }
 
 module.exports = InventoryPage;
