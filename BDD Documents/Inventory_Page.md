@@ -46,31 +46,27 @@
 - GIVEN I am logged in as standard_user
 - and I am on the Inventory Page
 
-#### Senario 1: User sorts items is ascending alphabetical order
+#### Senario 1: User sorts items in ascending alphabetical order
 
-- WHEN I click the filter button
-- and I select "Name (A to Z)"
+- WHEN I filter by "Name (A to Z)"
 - THEN I should see item "Sauce Labs Backpack" as the first item
 - and I should see item "Test.allTheThings() T-Shirt (Red)" as the last item
 
-#### Senario 2: User sorts items is descending alphabetical order
+#### Senario 2: User sorts items in descending alphabetical order
 
-- WHEN I click the filter button
-- and I select "Name (Z to A)"
+- WHEN I filter by "Name (Z to A)"
 - THEN I should see item "Test.allTheThings() T-Shirt (Red)" as the first item
 - and I should see item "Sauce Labs Backpack" as the last item
 
 #### Senario 3: User sorts items is ascending price order
 
-- WHEN I click the filter button
-- and I select "Price (low to high)"
+- WHEN I filter by "Price (low to high)"
 - THEN I should see item "Sauce Labs Onesie" as the first item
 - and I should see item "Sauce Labs Fleece Jacket" as the last item
 
 #### Senario 4: User sorts items is descending price order
 
-- WHEN I click the filter button
-- and I select "Price (high to low)"
+- WHEN I filter by "Price (high to low)"
 - THEN I should see item "Sauce Labs Fleece Jacket" as the first item
 - and I should see item "Sauce Labs Onesie" as the last item
 

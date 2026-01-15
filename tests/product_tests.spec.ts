@@ -114,7 +114,7 @@ test("Items Senario 4: User logs out and logs back in with a saved cart", async 
 });
 
 //Feature: Sorting/filter Items
-test("Senario 1: User sorts items is ascending alphabetical order", async ({
+test("Senario 1: User sorts items in ascending alphabetical order", async ({
   page,
 }) => {
   const inventoryPage = new InventoryPage(page);
@@ -126,6 +126,48 @@ test("Senario 1: User sorts items is ascending alphabetical order", async ({
   await inventoryPage.checkFirstItem("Sauce Labs Backpack");
   /* and I should see item "Test.allTheThings() T-Shirt (Red)" as the last item */
   await inventoryPage.checkLastItem("Test.allTheThings() T-Shirt (Red)");
+});
+
+test("Senario 2: User sorts items in descending alphabetical order", async ({
+  page,
+}) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I filter by "Name (Z to A)" */
+  await inventoryPage.selectFilter("za");
+
+  /* THEN I should see item "Test.allTheThings() T-Shirt (Red)" as the first item */
+  await inventoryPage.checkFirstItem("Test.allTheThings() T-Shirt (Red)");
+  /* and I should see item "Sauce Labs Backpack" as the last item */
+  await inventoryPage.checkLastItem("Sauce Labs Backpack");
+});
+
+test("Senario 3: User sorts items is ascending price order", async ({
+  page,
+}) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I filter by "Price (low to high)" */
+  await inventoryPage.selectFilter("lohi");
+
+  /* THEN I should see item "Sauce Labs Onesie" as the first item */
+  await inventoryPage.checkFirstItem("Sauce Labs Onesie");
+  /* and I should see item "Sauce Labs Fleece Jacket" as the last item */
+  await inventoryPage.checkLastItem("Sauce Labs Fleece Jacket");
+});
+
+test("Senario 4: User sorts items is descending price order", async ({
+  page,
+}) => {
+  const inventoryPage = new InventoryPage(page);
+
+  /* WHEN I filter by "Price (high to low)" */
+  await inventoryPage.selectFilter("hilo");
+
+  /* THEN I should see item "Sauce Labs Fleece Jacket" as the first item */
+  await inventoryPage.checkFirstItem("Sauce Labs Fleece Jacket");
+  /* and I should see item "Sauce Labs Onesie" as the last item */
+  await inventoryPage.checkLastItem("Sauce Labs Onesie");
 });
 
 //Feature: Logout
