@@ -6,7 +6,5 @@
 
 TODO
 
-- Shopping Cart Doc
-- Shopping Cart Tests
 - Checkout Doc
 - Checkout Tests
