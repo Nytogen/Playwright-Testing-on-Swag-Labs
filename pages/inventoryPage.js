@@ -12,6 +12,26 @@ class InventoryPage {
     this.reset = this.page.locator("a#reset_sidebar_link");
 
     this.cart = this.page.locator("a[data-test='shopping-cart-link']");
+    this.cartBadge = this.page.locator("[data-test='shopping-cart-badge']");
+    this.backProducts = this.page.locator("button[name='back-to-products']");
+
+    this.filter = this.page.locator(
+      "select[data-test='product-sort-container']",
+    );
+
+    this.title = this.page.locator("[data-test='title']");
+
+    this.inventoryDescrptions = this.page.locator(
+      "[data-test='inventory-item-description']",
+    );
+
+    this.firstItem = this.page
+      .locator("[data-test='inventory-list'] > :first-child")
+      .locator("[data-test='inventory-item-name']");
+
+    this.lastItem = this.page
+      .locator("[data-test='inventory-list'] > :last-child")
+      .locator("[data-test='inventory-item-name']");
   }
 
   /* Nav */
@@ -47,56 +67,40 @@ class InventoryPage {
   /* Items */
   async addItemToCart(productName) {
     const child = this.page.getByText(productName);
-    const parent = this.page
-      .locator("[data-test='inventory-item-description']")
-      .filter({ has: child });
+    const parent = this.inventoryDescrptions.filter({ has: child });
     await parent.locator("button").click();
   }
 
   async removeItemToCart(productName) {
     const child = this.page.getByText(productName);
-    const parent = this.page
-      .locator("[data-test='inventory-item-description']")
-      .filter({ has: child });
+    const parent = this.inventoryDescrptions.filter({ has: child });
     await parent.locator("button").click();
   }
 
   async selectFilter(filterValue) {
-    await this.page
-      .locator("select[data-test='product-sort-container']")
-      .selectOption({ value: filterValue });
+    await this.filter.selectOption({ value: filterValue });
   }
 
   /* Assertions */
 
   async checkFirstItem(itemName) {
-    await expect(
-      this.page
-        .locator("[data-test='inventory-list'] > :first-child")
-        .locator("[data-test='inventory-item-name']")
-    ).toHaveText(itemName);
+    await expect(this.firstItem).toHaveText(itemName);
   }
 
   async checkLastItem(itemName) {
-    await expect(
-      this.page
-        .locator("[data-test='inventory-list'] > :last-child")
-        .locator("[data-test='inventory-item-name']")
-    ).toHaveText(itemName);
+    await expect(this.lastItem).toHaveText(itemName);
   }
 
   async checkTitle(title) {
-    await expect(this.page.locator("[data-test='title']")).toHaveText(title);
+    await expect(this.title).toHaveText(title);
   }
 
   async checkNotTitle(title) {
-    await expect(this.page.locator("[data-test='title']")).not.toHaveText(
-      title
-    );
+    await expect(this.title).not.toHaveText(title);
   }
 
   async checkNoTitle() {
-    await expect(this.page.getByText("Products")).not.toBeVisible();
+    await expect(this.title).not.toBeVisible();
   }
 
   async checkItemButtonisVisible(itemName) {
@@ -105,26 +109,20 @@ class InventoryPage {
 
   async checkItemButtonisNotVisible(itemName) {
     await expect(
-      this.page.locator(`[data-test='${itemName}']`)
+      this.page.locator(`[data-test='${itemName}']`),
     ).not.toBeVisible();
   }
 
   async checkCartNumber(number) {
-    await expect(
-      this.page.locator("[data-test='shopping-cart-badge']")
-    ).toHaveText(`${number}`);
+    await expect(this.cartBadge).toHaveText(`${number}`);
   }
 
   async checkNoCartItems() {
-    await expect(
-      this.page.locator("[data-test='shopping-cart-badge']")
-    ).not.toBeVisible();
+    await expect(this.cartBadge).not.toBeVisible();
   }
 
   async checkBackToProductButtonExists() {
-    await expect(
-      this.page.locator("button[name='back-to-products']")
-    ).toBeVisible();
+    await expect(this.backProducts).toBeVisible();
   }
   async checkProductNotVisible(productName) {
     await expect(this.page.getByText(productName)).not.toBeVisible();
