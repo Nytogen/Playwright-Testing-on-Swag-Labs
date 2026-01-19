@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import LoginPage from "../pages/loginPage";
 import InventoryPage from "../pages/inventoryPage";
 
@@ -39,7 +39,7 @@ test("Login Senario 2: Sucessful login with a valid user", async ({ page }) => {
   await loginPage.checkLoginButtonExists();
   /* And I should see "Epic sadface: Username and password do not match any user in this service" */
   await loginPage.CheckErrorMessage(
-    "Epic sadface: Username and password do not match any user in this service"
+    "Epic sadface: Username and password do not match any user in this service",
   );
 });
 
@@ -59,7 +59,7 @@ test("Login Senario 3: Unsucessful login due to invalid username", async ({
   await loginPage.checkLoginButtonExists();
   /* And I should see "Epic sadface: Username and password do not match any user in this service" */
   await loginPage.CheckErrorMessage(
-    "Epic sadface: Username and password do not match any user in this service"
+    "Epic sadface: Username and password do not match any user in this service",
   );
 });
 
@@ -79,7 +79,7 @@ test("Login Senario 4: Unsucessful login due to user being lockedout", async ({
   await loginPage.checkLoginButtonExists();
   /* And I should see "Epic sadface: Username and password do not match any user in this service" */
   await loginPage.CheckErrorMessage(
-    "Epic sadface: Sorry, this user has been locked out."
+    "Epic sadface: Sorry, this user has been locked out.",
   );
 });
 

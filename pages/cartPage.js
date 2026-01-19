@@ -6,6 +6,10 @@ class CartPage {
     this.cartList = this.page.locator("div[data-test='cart-list']");
     this.continueShopping = this.page.locator("button#continue-shopping");
     this.checkout = this.page.locator("button#checkout");
+
+    this.inventoryList = this.cartList.locator(
+      "div[data-test='inventory-item']",
+    );
   }
 
   async clickContinueShopping() {
@@ -30,9 +34,7 @@ class CartPage {
   }
 
   async checkEmptyCart() {
-    await expect(
-      this.cartList.locator("div[data-test='inventory-item']"),
-    ).not.toBeVisible();
+    await expect(this.inventoryList).not.toBeVisible();
   }
 }
 

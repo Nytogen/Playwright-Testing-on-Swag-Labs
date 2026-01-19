@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test } from "@playwright/test";
 import LoginPage from "../pages/loginPage";
 import InventoryPage from "../pages/inventoryPage";
 import CartPage from "../pages/cartPage";
@@ -83,7 +83,7 @@ test("Navigation Senario 2: Go to Checkout", async ({ page }) => {
 
   /* THEN I should see "Checkout: Your Information" */
   const checkoutPage = new CheckoutPage(page);
-  await inventoryPage.checkTitle("Checkout: Your Information");
+  await checkoutPage.checkTitle("Checkout: Your Information");
 });
 
 //Feature: Removing an Item

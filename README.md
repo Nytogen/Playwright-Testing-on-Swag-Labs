@@ -8,3 +8,4 @@ TODO
 
 - Checkout Doc
 - Checkout Tests
+- Refactor inventory Page to put locators in constructor

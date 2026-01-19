@@ -6,6 +6,8 @@ class LoginPage {
     this.username = this.page.locator("input#user-name");
     this.password = this.page.locator("#password");
     this.login = this.page.locator("#login-button");
+
+    this.error = this.page.locator("h3[data-test='error']");
   }
 
   /* Seperate functions were created so that it is easier to add BDD comments into the tests. */
@@ -23,19 +25,15 @@ class LoginPage {
 
   /* Assertions */
   async checkLoginButtonExists() {
-    await expect(this.page.locator("[data-test='login-button']")).toBeVisible();
+    await expect(this.login).toBeVisible();
   }
 
   async checkLoginButtonDoesNotExist() {
-    await expect(
-      this.page.locator("[data-test='login-button']")
-    ).not.toBeVisible();
+    await expect(this.login).not.toBeVisible();
   }
 
   async CheckErrorMessage(erorMessage) {
-    await expect(this.page.locator("h3[data-test='error']")).toHaveText(
-      erorMessage
-    );
+    await expect(this.error).toHaveText(erorMessage);
   }
 
   /* For cases where the login page is not tested a combined function is created */
