@@ -11,6 +11,8 @@ class CheckoutPage {
     this.postalCode = this.page.locator("input[data-test='postalCode']");
 
     this.continue = this.page.locator("input#continue");
+    this.finish = this.page.locator("button#finish");
+    this.backHome = this.page.locator("button#back-to-products");
 
     this.title = this.page.locator("[data-test='title']");
     this.error = this.page.locator("[data-test='error']");
@@ -45,6 +47,14 @@ class CheckoutPage {
     await this.enterPostalCode("Foobar");
   }
 
+  async clickFinish() {
+    await this.finish.click();
+  }
+
+  async clickBackHome() {
+    await this.backHome.click();
+  }
+
   /* Assertions */
   async checkTitle(title) {
     await expect(this.title).toHaveText(title);
@@ -60,6 +70,10 @@ class CheckoutPage {
 
   async checkItemAppears(itemName) {
     await expect(this.cartList.getByText(itemName)).toBeVisible();
+  }
+
+  async checkItemDoesNotAppear(itemName) {
+    await expect(this.cartList.getByText(itemName)).not.toBeVisible();
   }
 }
 

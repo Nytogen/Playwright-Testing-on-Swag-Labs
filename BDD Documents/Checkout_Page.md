@@ -81,8 +81,29 @@
 - and I go to the checkout page
 - and I enter valid credentials
 - and I click "continue"
-- THEN I should see "Item total: $0.00"
+- THEN I should see "Item total: $0"
 - and I should not see "Sauce Labs Backpack"
 - and I should not see "Sauce Labs Bike Light"
 
 ## Feature: Complete Checkout
+
+#### Background:
+
+- GIVEN I am logged in as standard_user
+- and I am on the checkout Page
+
+#### Complete Checkout Senario 1: Complete Checkout
+
+- WHEN I enter valid credentials
+- and I click "continue"
+- and I click "Finish"
+- THEN I should see "Checkout: Complete!"
+
+#### Compelete Checkout Senario 2: Go back to home
+
+- WHEN I enter valid credentials
+- and I click "continue"
+- and I click "Finish"
+- and I click "Back Home"
+- THEN I should see "Products"
+- and I should see an empty cart
