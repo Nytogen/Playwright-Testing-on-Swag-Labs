@@ -25,7 +25,3 @@ To run tests and trace the run
 ```
 npx playwright test --ui
 ```
-
-TODO
-
-- Refactor inventory Page to put locators in constructor
